@@ -17,21 +17,48 @@ st.set_page_config(
     layout="centered"
 )
 
-EXTRACTION_MODEL_CHAIN = [
-    "gemini-3.1-flash-lite-preview",
-    "gemini-2.5-flash-lite",
-    "gemini-2.5-flash",
-]
-
-REASONING_MODEL_CHAIN = [
-    "gemini-2.5-flash",
-    "gemini-3-flash-preview",
-    "gemini-3.1-flash-lite-preview",
-]
+# Model assignments — chosen based on task type and rate limit headroom
+MODEL_EXTRACTION = "gemini-3.1-flash-lite-preview"  # Stage 1: structured extraction
+MODEL_REASONING = "gemini-2.5-flash"                # Stage 2: causal reasoning + chat
 
 
 # ===========================================
-# PYDANTIC SCHEMAS
+# INPUT VALIDATION SCHEMAS
+# Constrains the system to accept only Ask First-formatted data.
+# Malformed input fails explicitly rather than producing garbage output.
+# ===========================================
+
+class ClaryConversation(BaseModel):
+    """Strict schema for a single conversation in user history."""
+    session_id: str
+    timestamp: str
+    user_message: str
+    clary_questions: List[str] = Field(default_factory=list)
+    user_followup: str = ""
+    clary_response: str
+    severity: str = "unknown"
+    tags: List[str] = Field(default_factory=list)
+
+
+class UserProfile(BaseModel):
+    """Strict schema for a single user profile."""
+    user_id: str
+    name: str
+    age: int
+    gender: str
+    location: str
+    occupation: str
+    onboarding_notes: str = ""
+    conversations: List[ClaryConversation]
+
+
+class DatasetSchema(BaseModel):
+    """Strict schema for the full input dataset."""
+    users: List[UserProfile]
+
+
+# ===========================================
+# OUTPUT SCHEMAS (per-stage validation)
 # ===========================================
 
 class TimelineEvent(BaseModel):
@@ -51,7 +78,9 @@ class PatientTimeline(BaseModel):
 class EvidenceItem(BaseModel):
     session_id: str
     timestamp: str
-    note: str = Field(description="Brief explanation of why this session supports or counters the pattern")
+    note: str = Field(
+        description="Brief explanation of why this session supports or counters the pattern"
+    )
 
 
 class CausalPattern(BaseModel):
@@ -87,14 +116,55 @@ class AnalysisResult(BaseModel):
 
 @st.cache_data
 def load_data():
+    """
+    Load and validate the Ask First dataset.
+
+    Returns the raw dict on success (for backward compatibility with
+    existing dict-style access), or an empty users dict on failure.
+    Validation errors are surfaced to the UI with explicit messages.
+    """
     current_dir = os.path.dirname(os.path.abspath(__file__))
     file_path = os.path.join(current_dir, "data", "cleaned_dataset.json")
+
+    # Step 1: file existence + JSON parseability
     try:
         with open(file_path, "r", encoding="utf-8") as f:
-            return json.load(f)
+            raw_data = json.load(f)
     except FileNotFoundError:
-        st.error(f"Dataset not found at: {file_path}")
+        st.error(
+            f"Dataset not found at `{file_path}`. "
+            f"Place a valid Ask First dataset JSON in the `data/` directory."
+        )
         return {"users": []}
+    except json.JSONDecodeError as e:
+        st.error(
+            f"Dataset file is not valid JSON. "
+            f"The file must be parseable JSON conforming to the Ask First schema.\n\n"
+            f"Parse error: `{e}`"
+        )
+        return {"users": []}
+
+    # Step 2: schema validation
+    try:
+        DatasetSchema.model_validate(raw_data)
+    except ValidationError as e:
+        # Truncate validation errors to keep the UI readable
+        error_summary = str(e)
+        if len(error_summary) > 800:
+            error_summary = error_summary[:800] + "\n... (truncated)"
+
+        st.error(
+            "**Dataset failed schema validation.**\n\n"
+            "This system accepts only Ask First-formatted data. Each user must include "
+            "`user_id`, `name`, `age`, `gender`, `location`, `occupation`, and "
+            "`conversations`. Each conversation must include `session_id`, `timestamp`, "
+            "`user_message`, and `clary_response`.\n\n"
+            f"**Validation errors:**\n```\n{error_summary}\n```"
+        )
+        return {"users": []}
+
+    # Validation passed — return original dict for backward compatibility
+    return raw_data
 
 
 def save_output(user_id: str, analysis: AnalysisResult):
@@ -126,50 +196,6 @@ def get_genai_client():
     return genai.Client(api_key=api_key)
 
 
-def stream_with_fallback(client, prompt, config, model_chain, ui_placeholder=None):
-    """
-    Try each model in model_chain in order. On 503/429/quota errors,
-    fall through to the next model. Stream tokens to ui_placeholder
-    (a Streamlit st.empty() container) if provided.
-
-    Returns: (full_response_text, model_used)
-    Raises: RuntimeError if all models in chain fail.
-    """
-    _RETRYABLE = ["503", "429", "unavailable", "quota", "rate limit", "exhausted"]
-    last_error = None
-
-    for model_name in model_chain:
-        full_text = ""
-        try:
-            response = client.models.generate_content_stream(
-                model=model_name,
-                contents=prompt,
-                config=config,
-            )
-            for chunk in response:
-                if chunk.text:
-                    full_text += chunk.text
-                    if ui_placeholder is not None:
-                        ui_placeholder.code(full_text, language="json")
-            return full_text, model_name
-        except Exception as e:
-            error_str = str(e).lower()
-            if any(marker in error_str for marker in _RETRYABLE):
-                last_error = e
-                if ui_placeholder is not None:
-                    ui_placeholder.warning(
-                        f"`{model_name}` unavailable ({type(e).__name__}), "
-                        f"trying next model..."
-                    )
-                time.sleep(2)
-                continue
-            raise
-
-    raise RuntimeError(
-        f"All models in chain failed. Last error: {last_error}"
-    )
-
-
 # ===========================================
 # UI SETUP
 # ===========================================
@@ -181,7 +207,10 @@ st.sidebar.title("Clary Reasoning Engine")
 st.sidebar.caption("Multi-stage temporal pattern analysis")
 
 if not users:
-    st.error("No users loaded. Check data/cleaned_dataset.json")
+    st.info(
+        "No valid user data loaded. Place a properly formatted Ask First "
+        "dataset at `data/cleaned_dataset.json` and reload."
+    )
     st.stop()
 
 selected_user_name = st.sidebar.radio("Select Patient", list(users.keys()))
@@ -189,13 +218,9 @@ selected_user_data = users[selected_user_name]
 
 st.sidebar.markdown("---")
 st.sidebar.markdown("**Pipeline:**")
-st.sidebar.markdown("**Stage 1 — Extraction**")
-for m in EXTRACTION_MODEL_CHAIN:
-    st.sidebar.markdown(f"- `{m}`")
-st.sidebar.markdown("**Stage 2 — Reasoning**")
-for m in REASONING_MODEL_CHAIN:
-    st.sidebar.markdown(f"- `{m}`")
-st.sidebar.caption("Auto-fallback on 503/429 errors")
+st.sidebar.markdown(f"1. Event Extraction (`{MODEL_EXTRACTION}`)")
+st.sidebar.markdown(f"2. Causal Reasoning (`{MODEL_REASONING}`)")
+st.sidebar.markdown(f"3. Follow-up Q&A (`{MODEL_REASONING}`)")
 
 st.title(f"Analysis: {selected_user_name}")
 st.caption(
@@ -275,19 +300,20 @@ Conversation data:
 {user_context}"""
 
     stage_1_placeholder = st.empty()
+    raw_stage_1 = ""
 
     try:
-        raw_stage_1, model_used_1 = stream_with_fallback(
-            client=client,
-            prompt=stage_1_prompt,
-            config=types.GenerateContentConfig(temperature=0),
-            model_chain=EXTRACTION_MODEL_CHAIN,
-            ui_placeholder=stage_1_placeholder,
+        response_1 = client.models.generate_content_stream(
+            model=MODEL_EXTRACTION,
+            contents=stage_1_prompt,
+            config=types.GenerateContentConfig(temperature=0)
         )
-        if model_used_1 != EXTRACTION_MODEL_CHAIN[0]:
-            st.info(f"Stage 1 used fallback model: `{model_used_1}`")
+        for chunk in response_1:
+            if chunk.text:
+                raw_stage_1 += chunk.text
+                stage_1_placeholder.code(raw_stage_1, language="json")
     except Exception as e:
-        st.error(f"All extraction models failed: {e}")
+        st.error(f"API error in Stage 1: {e}")
         st.stop()
 
     try:
@@ -405,19 +431,20 @@ Original conversations (for nuance and context the structured timeline may have 
 {user_context}"""
 
     stage_2_placeholder = st.empty()
+    raw_stage_2 = ""
 
     try:
-        raw_stage_2, model_used_2 = stream_with_fallback(
-            client=client,
-            prompt=stage_2_prompt,
-            config=types.GenerateContentConfig(temperature=0),
-            model_chain=REASONING_MODEL_CHAIN,
-            ui_placeholder=stage_2_placeholder,
+        response_2 = client.models.generate_content_stream(
+            model=MODEL_REASONING,
+            contents=stage_2_prompt,
+            config=types.GenerateContentConfig(temperature=0)
         )
-        if model_used_2 != REASONING_MODEL_CHAIN[0]:
-            st.info(f"Stage 2 used fallback model: `{model_used_2}`")
+        for chunk in response_2:
+            if chunk.text:
+                raw_stage_2 += chunk.text
+                stage_2_placeholder.code(raw_stage_2, language="json")
     except Exception as e:
-        st.error(f"All reasoning models failed: {e}")
+        st.error(f"API error in Stage 2: {e}")
         st.stop()
 
     try:
@@ -549,33 +576,19 @@ Answer in 2-4 short paragraphs. Be specific and grounded in the data."""
         with st.chat_message("assistant"):
             placeholder = st.empty()
             response_text = ""
-            client = get_genai_client()
-            last_error = None
-            for model_name in REASONING_MODEL_CHAIN:
-                try:
-                    response_text = ""
-                    stream = client.models.generate_content_stream(
-                        model=model_name,
-                        contents=chat_prompt,
-                        config=types.GenerateContentConfig(temperature=0.3)
-                    )
-                    for chunk in stream:
-                        if chunk.text:
-                            response_text += chunk.text
-                            placeholder.markdown(response_text)
-                    if model_name != REASONING_MODEL_CHAIN[0]:
-                        response_text += f"\n\n*(answered using {model_name} fallback)*"
+            try:
+                client = get_genai_client()
+                stream = client.models.generate_content_stream(
+                    model=MODEL_REASONING,
+                    contents=chat_prompt,
+                    config=types.GenerateContentConfig(temperature=0.3)
+                )
+                for chunk in stream:
+                    if chunk.text:
+                        response_text += chunk.text
                         placeholder.markdown(response_text)
-                    break
-                except Exception as e:
-                    error_str = str(e).lower()
-                    if any(c in error_str for c in ["503", "429", "unavailable", "quota", "rate limit", "exhausted"]):
-                        last_error = e
-                        continue
-                    else:
-                        raise
-            else:
-                response_text = f"All chat models failed. Last error: {last_error}"
+            except Exception as e:
+                response_text = f"Error: {e}"
                 placeholder.error(response_text)
 
         st.session_state[chat_key].append({
