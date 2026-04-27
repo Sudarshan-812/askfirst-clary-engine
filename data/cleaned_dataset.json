@@ -1,0 +1,304 @@
+{
+  "dataset_info": {
+    "version": "1.0",
+    "created_for": "Ask First AI Intern Assignment",
+    "total_users": 3,
+    "total_conversations": 27,
+    "date_range": "January 2026 - March 2026",
+    "note": "Synthetic data only. All users, names, and health details are fictional."
+  },
+
+  "users": [
+    {
+      "user_id": "USR001",
+      "name": "Arjun",
+      "age": 26,
+      "gender": "male",
+      "location": "Bangalore",
+      "occupation": "Software engineer",
+      "onboarding_notes": "Works late most days. Eats out frequently. No known allergies or conditions.",
+      "conversations": [
+        {
+          "session_id": "USR001_S01",
+          "timestamp": "2026-01-05T23:14:00",
+          "user_message": "my stomach has been hurting since last night, like a burning kind of pain in the middle",
+          "clary_questions": ["how long exactly has this been going on?", "did you eat anything unusual yesterday?", "is the pain constant or does it come and go?"],
+          "user_followup": "started maybe around midnight. I had dinner pretty late, like around 11:30pm after a long work session. the pain comes and goes",
+          "clary_response": "sounds like it could be acidity from eating late. try not lying down right after eating and avoid spicy food tonight. if it continues more than 2 days let me know",
+          "severity": "mild",
+          "tags": ["stomach", "acidity", "late eating"]
+        },
+        {
+          "session_id": "USR001_S02",
+          "timestamp": "2026-01-12T10:30:00",
+          "user_message": "I have been getting headaches in the afternoon, like around 3 or 4pm every day this week",
+          "clary_questions": ["is it a throbbing pain or more of a pressure?", "how much water are you drinking on these days?", "are you staring at a screen most of the day?"],
+          "user_followup": "more like pressure, behind my eyes. honestly I probably drink like 2 glasses of water the whole day when I am busy at work. yes screens all day",
+          "clary_response": "afternoon headaches with low water intake points strongly to dehydration. screen strain adds to it. try setting a reminder to drink water every hour during work. start tomorrow and see if it helps by day 3",
+          "severity": "mild",
+          "tags": ["headache", "dehydration", "screen time"]
+        },
+        {
+          "session_id": "USR001_S03",
+          "timestamp": "2026-01-19T09:15:00",
+          "user_message": "headaches are mostly gone. but now my lower back is bothering me",
+          "clary_questions": ["is it more on one side or both?", "does it hurt more after sitting for long periods?", "any new exercise or activity recently?"],
+          "user_followup": "both sides. yes I sit for like 10 hours straight sometimes. no new exercise, I basically dont exercise",
+          "clary_response": "classic desk-related lower back strain. your posture and sitting duration are the main culprits here. try getting up every 45 minutes even just for 2 minutes. a lumbar cushion would help if you sit on a chair all day",
+          "severity": "mild",
+          "tags": ["back pain", "posture", "sedentary"]
+        },
+        {
+          "session_id": "USR001_S04",
+          "timestamp": "2026-01-28T00:42:00",
+          "user_message": "stomach is acting up again. same burning pain as before",
+          "clary_questions": ["what time did you eat dinner tonight?", "anything stressful happening at work lately?", "same location as last time, middle of stomach?"],
+          "user_followup": "ate around 11pm again, had a deadline. yes work has been intense. yeah same place",
+          "clary_response": "this is the second time the stomach pain has come after a late dinner during a stressful work period. the combination of late eating and stress is likely triggering acid production. try to eat something small earlier even on late nights rather than waiting",
+          "severity": "mild",
+          "tags": ["stomach", "acidity", "late eating", "stress"]
+        },
+        {
+          "session_id": "USR001_S05",
+          "timestamp": "2026-02-04T15:22:00",
+          "user_message": "feeling really tired lately, like even after 7 hours of sleep I wake up exhausted",
+          "clary_questions": ["what time are you going to bed usually?", "is your sleep broken or do you sleep through?", "how is your diet looking lately?"],
+          "user_followup": "sleep around 1am or 2am usually. I think I sleep through mostly. diet is not great, eating out every day basically",
+          "clary_response": "sleeping at 1-2am and waking up after 7 hours puts you at 8-9am. if work starts early thats not enough recovery time. your body needs consistent sleep timing not just duration. try shifting bedtime 30 minutes earlier this week",
+          "severity": "mild",
+          "tags": ["fatigue", "sleep", "diet"]
+        },
+        {
+          "session_id": "USR001_S06",
+          "timestamp": "2026-02-14T11:05:00",
+          "user_message": "random question, been getting headaches again this week. thought I was drinking more water but maybe not enough",
+          "clary_questions": ["how many glasses roughly today?", "how long are your work sessions without breaks?", "any change in caffeine intake?"],
+          "user_followup": "maybe 3 glasses today. I had a big project this week so barely moved from my desk. actually started drinking more coffee to stay awake, like 3 or 4 cups",
+          "clary_response": "coffee is a diuretic so more coffee without more water actually dehydrates you faster. your water intake on heavy work days is consistently low based on what you've told me before. the pattern is clear - busy days, less water, headache by afternoon. try keeping a water bottle at your desk as a visual reminder",
+          "severity": "mild",
+          "tags": ["headache", "dehydration", "caffeine", "busy work day"]
+        },
+        {
+          "session_id": "USR001_S07",
+          "timestamp": "2026-02-23T23:55:00",
+          "user_message": "stomach again. I know I know. had dinner at midnight after a sprint review that ran late",
+          "clary_response": "this is now the third time - january 5th, january 28th, and tonight - all after late dinners during work deadlines. this isnt random. your stomach is consistently reacting to late eating. this needs a habit change not just treatment. even eating something small at 7pm before the deadline would prevent this",
+          "severity": "mild",
+          "tags": ["stomach", "acidity", "late eating", "pattern confirmed"]
+        },
+        {
+          "session_id": "USR001_S08",
+          "timestamp": "2026-03-08T16:40:00",
+          "user_message": "headache is back. honestly I dont even know why I am surprised",
+          "clary_questions": ["water today?", "big deadline this week?"],
+          "user_followup": "barely any water. yes massive release this week",
+          "clary_response": "you already know the answer here. busy week, no water, headache. this has now happened in january week 2, february week 2, and now march week 2 - all during high pressure work periods. your headaches are a hydration and workload signal not a random health issue",
+          "severity": "mild",
+          "tags": ["headache", "dehydration", "work pressure", "pattern confirmed"]
+        },
+        {
+          "session_id": "USR001_S09",
+          "timestamp": "2026-03-19T10:15:00",
+          "user_message": "stomach pain last night again. I am starting to think I have some kind of condition",
+          "clary_questions": ["dinner time last night?", "work situation this week?"],
+          "user_followup": "11:30pm. yes another deadline",
+          "clary_response": "arjun this is the fourth episode of stomach pain and every single time it follows a late dinner during a work deadline. you dont have a stomach condition. you have a late eating habit that your stomach consistently protests. the pattern is very clear now",
+          "severity": "mild",
+          "tags": ["stomach", "acidity", "late eating", "pattern very clear"]
+        }
+      ]
+    },
+    {
+      "user_id": "USR002",
+      "name": "Meera",
+      "age": 23,
+      "gender": "female",
+      "location": "Mumbai",
+      "occupation": "Marketing executive",
+      "onboarding_notes": "Health conscious. Started a new fitness routine in January. No known conditions.",
+      "conversations": [
+        {
+          "session_id": "USR002_S01",
+          "timestamp": "2026-01-08T08:30:00",
+          "user_message": "I started intermittent fasting this week, doing 16:8. also cutting down a lot on calories to lose weight faster. eating maybe 700-800 calories a day",
+          "clary_questions": ["how are you feeling energy wise?", "what are you eating in your eating window?", "any dizziness or weakness?"],
+          "user_followup": "energy is okay so far. mostly salads and some protein. a little dizzy in the mornings but I think thats normal",
+          "clary_response": "700-800 calories is quite low especially with fasting. morning dizziness is your body signalling it needs more fuel. intermittent fasting works better at 1200-1400 calories not severe restriction. worth monitoring closely",
+          "severity": "mild",
+          "tags": ["diet", "intermittent fasting", "calorie restriction", "dizziness"]
+        },
+        {
+          "session_id": "USR002_S02",
+          "timestamp": "2026-01-15T19:45:00",
+          "user_message": "skin has been breaking out a lot on my cheeks and chin this week. I dont usually get this much acne",
+          "clary_questions": ["any new products in your routine?", "diet changes recently?", "where exactly on your face?"],
+          "user_followup": "no new products. I have been eating more dairy lately actually, having greek yogurt and paneer a lot for protein since I am trying to hit protein goals on low calories. cheeks mostly",
+          "clary_response": "cheek acne is often linked to diet, particularly dairy. some people are sensitive to the hormones in dairy products which can trigger oil production. try reducing dairy for 2 weeks and see if there is improvement",
+          "severity": "mild",
+          "tags": ["skin", "acne", "cheeks", "dairy", "diet"]
+        },
+        {
+          "session_id": "USR002_S03",
+          "timestamp": "2026-01-22T21:10:00",
+          "user_message": "still breaking out. maybe even worse. I added more dairy this week, paneer twice a day basically",
+          "clary_questions": ["did you try reducing dairy as I suggested?", "any other changes?"],
+          "user_followup": "no I actually increased it. need the protein. the acne is on cheeks and a little on jawline now",
+          "clary_response": "the acne spreading from cheeks to jawline while increasing dairy is a strong signal. jawline acne specifically is linked to hormonal triggers, and dairy can amplify this. I would really suggest a 2 week dairy reduction trial. find protein from lentils, eggs, or chicken instead",
+          "severity": "mild",
+          "tags": ["skin", "acne", "jawline", "dairy increase", "hormonal"]
+        },
+        {
+          "session_id": "USR002_S04",
+          "timestamp": "2026-02-01T10:00:00",
+          "user_message": "I cut dairy for a week and my skin is so much clearer honestly. like noticeably better",
+          "clary_response": "that clarity within one week confirms dairy was the trigger for your skin. your skin responds quickly which is actually a good sign. keep dairy low and when you do have it observe if breakouts follow within 48-72 hours. that window will tell you exactly how sensitive you are",
+          "severity": "none",
+          "tags": ["skin", "dairy reduction", "improvement", "pattern confirmed"]
+        },
+        {
+          "session_id": "USR002_S05",
+          "timestamp": "2026-02-10T07:55:00",
+          "user_message": "I have been really tired lately. sleeping 8 hours but feel exhausted. also my workouts feel so much harder than they should",
+          "clary_questions": ["how is the fasting and calorie intake going?", "any dizziness or brain fog?", "how long has the fatigue been there?"],
+          "user_followup": "still doing 700 calories most days. yes some brain fog. maybe 3 weeks now?",
+          "clary_response": "700 calories over 5 weeks is significantly below what your body needs especially with exercise. the fatigue, brain fog, and workout difficulty are classic signs of under-fuelling. your body is running on reserve. please increase to at least 1200 calories. weight loss at this deficit is not sustainable and is affecting your daily function",
+          "severity": "moderate",
+          "tags": ["fatigue", "calorie restriction", "brain fog", "under-fuelling"]
+        },
+        {
+          "session_id": "USR002_S06",
+          "timestamp": "2026-02-19T20:30:00",
+          "user_message": "my hair has been falling out so much. like way more than usual. finding it everywhere, pillow, shower, hands when I run fingers through",
+          "clary_questions": ["when did you first notice this?", "any changes in the last 2-3 months?", "stress levels lately?"],
+          "user_followup": "maybe 2 weeks ago. I mean I started my diet and fasting in january. stress is normal I guess",
+          "clary_response": "this is important. you started severe calorie restriction around january 8th. hair fall typically manifests 8-12 weeks after a nutritional deficiency begins, not immediately. the timing aligns almost exactly. your body deprioritised hair growth to protect vital organs when calories dropped too low. this is called telogen effluvium and it is reversible but you need to increase calories now",
+          "severity": "moderate",
+          "tags": ["hair fall", "calorie restriction", "telogen effluvium", "temporal connection", "january diet"]
+        },
+        {
+          "session_id": "USR002_S07",
+          "timestamp": "2026-02-27T11:20:00",
+          "user_message": "I added back dairy this week because I was craving it and I am scared the acne will come back",
+          "clary_questions": ["how much dairy?", "noticed anything on skin yet?"],
+          "user_followup": "just yogurt once a day. skin seems okay so far, 4 days in",
+          "clary_response": "small amounts of dairy after a break sometimes works fine. watch days 4-7 carefully. your skin reaction window was about 48-72 hours when dairy was high. if you stay at one small serving a day you may be below your personal threshold. keep monitoring",
+          "severity": "none",
+          "tags": ["skin", "dairy reintroduction", "monitoring"]
+        },
+        {
+          "session_id": "USR002_S08",
+          "timestamp": "2026-03-07T22:15:00",
+          "user_message": "hair fall is better since I started eating more. skin broke out again this week though. had paneer 3 days in a row",
+          "clary_response": "two updates noted. hair improvement confirms the calorie increase is working - your body is coming out of conservation mode. skin breakout following 3 days of paneer is now a confirmed pattern for you. january low dairy equals clear skin, february high dairy equals acne, march high dairy again equals acne. your skin has a clear dairy threshold. one serving occasionally is fine, daily is not",
+          "severity": "mild",
+          "tags": ["hair fall improving", "skin", "dairy pattern confirmed", "nutrition improving"]
+        },
+        {
+          "session_id": "USR002_S09",
+          "timestamp": "2026-03-18T09:40:00",
+          "user_message": "feeling so much better overall since eating more. hair fall has basically stopped. skin is clearer. just wanted to update",
+          "clary_response": "this is a great update. the hair fall stopping confirms what we suspected - it was directly caused by the severe calorie restriction starting january 8th and manifesting 6-7 weeks later. the dairy-skin connection is also now very clear from your own experience across three separate episodes. you have learned two important things about your body in 3 months",
+          "severity": "none",
+          "tags": ["recovery", "hair fall resolved", "skin improved", "pattern fully confirmed"]
+        }
+      ]
+    },
+    {
+      "user_id": "USR003",
+      "name": "Priya",
+      "age": 28,
+      "gender": "female",
+      "location": "Hyderabad",
+      "occupation": "Product manager",
+      "onboarding_notes": "Regular periods, cycle around 28 days. Desk job. Occasional gym.",
+      "conversations": [
+        {
+          "session_id": "USR003_S01",
+          "timestamp": "2026-01-06T14:30:00",
+          "user_message": "I feel so exhausted after lunch every single day. like I cannot focus at all between 2 and 4pm. it is affecting my work",
+          "clary_questions": ["what are you typically eating for lunch?", "how much sleep are you getting?", "does this happen on weekends too?"],
+          "user_followup": "usually rice, dal, maybe some curry. big meal. sleep is okay, 7 hours. weekends I dont really notice it as much, I nap if I feel tired",
+          "clary_response": "a large carbohydrate heavy lunch causes a blood sugar spike followed by a crash around 1-2 hours later. this is likely what is causing the 2-4pm fatigue. the fact it doesnt bother you on weekends when you can nap confirms it is the post-lunch dip. try adding more protein and reducing rice quantity at lunch and see if the 2pm slump improves",
+          "severity": "mild",
+          "tags": ["fatigue", "post-lunch", "blood sugar", "high carb lunch"]
+        },
+        {
+          "session_id": "USR003_S02",
+          "timestamp": "2026-01-14T21:00:00",
+          "user_message": "period is due in about a week and my cramps have started already. usually my cramps are manageable but this month they feel stronger",
+          "clary_questions": ["what day of your cycle are you on roughly?", "any changes in stress or sleep lately?", "have you been more stressed than usual?"],
+          "user_followup": "around day 21 I think. work has been really stressful this month, big product launch. sleep has been broken",
+          "clary_response": "pre-menstrual cramping can intensify with high cortisol levels from stress. your body produces more prostaglandins during stressful periods which can increase cramp severity. the timing with your product launch stress is notable. try heat therapy and if manageable an anti-inflammatory like ibuprofen. note whether next month is different if stress is lower",
+          "severity": "mild",
+          "tags": ["period", "cramps", "stress", "cortisol", "product launch"]
+        },
+        {
+          "session_id": "USR003_S03",
+          "timestamp": "2026-01-23T10:15:00",
+          "user_message": "the 2pm crash is still happening. I tried eating less rice but I was so hungry by 3pm and ended up snacking on biscuits",
+          "clary_questions": ["what did you eat for lunch yesterday specifically?", "did you add any protein?", "how was energy after the snack?"],
+          "user_followup": "smaller rice portion, same dal, no extra protein. after biscuits I felt okay for an hour then crashed again",
+          "clary_response": "biscuits are high sugar so they caused another smaller spike and crash. you need to replace some rice with protein not just reduce rice. try adding an egg or some chicken or paneer to your lunch. the protein slows glucose absorption and prevents the sharp crash",
+          "severity": "mild",
+          "tags": ["fatigue", "blood sugar", "lunch", "protein deficiency", "snacking"]
+        },
+        {
+          "session_id": "USR003_S04",
+          "timestamp": "2026-02-03T19:45:00",
+          "user_message": "I have been staying up late watching reels and series, like till 1 or 2am most nights. I know I shouldnt but I cant seem to stop. now I feel tired all day not just afternoons",
+          "clary_questions": ["how long has this been going on?", "what time are you waking up?", "has anything changed with your appetite or mood?"],
+          "user_followup": "maybe 3 weeks. waking up at 7 for work. mood has been a bit low honestly",
+          "clary_response": "chronic late night screen use disrupts melatonin production which affects both sleep quality and mood. you are getting 5-6 hours which is creating cumulative sleep debt. the all-day tiredness now versus just afternoon tiredness before is a sign the sleep deprivation is compounding. the mood dip often follows. try a hard stop on screens at 11:30pm this week",
+          "severity": "mild",
+          "tags": ["sleep", "late night screen use", "melatonin", "mood", "fatigue"]
+        },
+        {
+          "session_id": "USR003_S05",
+          "timestamp": "2026-02-11T22:30:00",
+          "user_message": "period cramps are really bad this month again. worse than usual. I am using a hot water bottle but not helping much",
+          "clary_questions": ["where are you in your cycle?", "how is work stress this month?", "how has your sleep been this week?"],
+          "user_followup": "day 23 I think, so period in about 5 days. work is still very stressful, another big deadline. sleep is bad still, the late night thing",
+          "clary_response": "this is the second month where your cramps are worse than usual and both times align with high work stress periods. last month was the product launch, this month another deadline. combined with poor sleep from late nights which elevates cortisol further, your body is in a sustained stress state heading into your period. the cramping response to stress is becoming a pattern worth tracking carefully",
+          "severity": "moderate",
+          "tags": ["period", "cramps", "stress", "deadline", "sleep deprivation", "second month pattern"]
+        },
+        {
+          "session_id": "USR003_S06",
+          "timestamp": "2026-02-20T13:00:00",
+          "user_message": "good news, I added chicken to my lunch this week and the 2pm crash is so much better. like I actually got through a full afternoon yesterday without feeling dead",
+          "clary_response": "protein at lunch making a measurable difference this quickly confirms the blood sugar crash was the primary cause of your afternoon fatigue. your body responds well to this change. keep the protein in lunch as a non-negotiable going forward. the difference between a productive afternoon and a useless one is literally what you eat at 1pm",
+          "severity": "none",
+          "tags": ["fatigue", "lunch protein", "blood sugar", "improvement confirmed"]
+        },
+        {
+          "session_id": "USR003_S07",
+          "timestamp": "2026-02-28T20:00:00",
+          "user_message": "still on the late night screen thing. I tried stopping at 11:30 but I just pick the phone up again. also feeling a bit anxious lately, low level but constant",
+          "clary_questions": ["is the anxiety about anything specific or just there?", "how is work?", "when you wake up are you rested or still tired?"],
+          "user_followup": "not about anything specific, just a general unease. work is a bit calmer now. wake up tired every day",
+          "clary_response": "the combination of chronic sleep deprivation from late night screen use, waking up tired every day, and low level floating anxiety are all connected. sleep debt creates a baseline cortisol elevation which produces exactly this kind of diffuse anxiety without a specific cause. your screens at night are likely the root issue here. this has now been going on about 7 weeks",
+          "severity": "moderate",
+          "tags": ["anxiety", "sleep deprivation", "late night screens", "cortisol", "7 weeks"]
+        },
+        {
+          "session_id": "USR003_S08",
+          "timestamp": "2026-03-10T21:45:00",
+          "user_message": "period coming in a few days and cramps started again. I am dreading it. this has been happening every month now",
+          "clary_questions": ["stress levels this month?", "sleep been any better?", "day of cycle?"],
+          "user_followup": "stress is actually low this month, no big deadlines. sleep is still bad because of screens. day 22",
+          "clary_response": "this is really useful data. january cramps bad, high stress, normal sleep. february cramps bad, high stress, bad sleep. now march, low stress but still bad sleep from screens. if the cramps are severe again this month it would suggest sleep deprivation and its effect on cortisol may be independently driving the cramping even without work stress. please note the intensity this month carefully",
+          "severity": "mild",
+          "tags": ["period", "cramps", "stress low", "sleep bad", "testing hypothesis", "screens"]
+        },
+        {
+          "session_id": "USR003_S09",
+          "timestamp": "2026-03-16T10:20:00",
+          "user_message": "cramps were still bad this month but work was actually fine. I am confused. you said stress was the cause",
+          "clary_response": "this is an important update. january high stress equals bad cramps. february high stress plus bad sleep equals very bad cramps. march low stress but still bad sleep equals bad cramps. the common factor across all three months is not just work stress but disrupted sleep from late night screen use. elevated cortisol from chronic sleep deprivation appears to be the consistent driver of your cramp severity, even when work is calm. your screen habit is affecting your period. that is the connection",
+          "severity": "moderate",
+          "tags": ["period", "cramps", "sleep deprivation confirmed driver", "screens", "cortisol", "pattern fully confirmed"]
+        }
+      ]
+    }
+  ]
+}
