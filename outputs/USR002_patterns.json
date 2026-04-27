@@ -1,0 +1,91 @@
+{
+  "reasoning_trace": [
+    "Observed acne breakouts in S02 and S03 following increased dairy intake (Greek yogurt and paneer).",
+    "Noted skin clearing in S04 after a one-week dairy elimination, providing a strong de-challenge evidence.",
+    "Identified a 'threshold' effect in S07 and S08: small amounts of dairy (yogurt 1x/day) were tolerated, but consecutive days of high-protein dairy (paneer 3 days in a row) triggered a relapse.",
+    "Analyzed the onset of dizziness (S01) and fatigue/brain fog (S05) in relation to the 700-800 calorie restriction started in S01.",
+    "Calculated the temporal lag for hair fall: diet started Jan 8 (S01), hair fall noticed Feb 19 (S06). This 6-week lag is consistent with nutritional-stress-induced telogen effluvium.",
+    "Verified the resolution of symptoms: hair fall stopped and energy returned (S08, S09) only after calorie intake was increased, confirming the low-calorie root cause.",
+    "Distinguished between the proximate cause of dizziness (fasting window) and the root cause (overall daily caloric deficit of 700-800 kcal)."
+  ],
+  "patterns": [
+    {
+      "pattern_title": "Dose-dependent dairy-induced acne",
+      "supporting_evidence": [
+        {
+          "session_id": "USR002_S02",
+          "timestamp": "2026-01-15T19:45:00",
+          "note": "Acne appeared after increasing Greek yogurt and paneer intake."
+        },
+        {
+          "session_id": "USR002_S03",
+          "timestamp": "2026-01-22T21:10:00",
+          "note": "Acne worsened and spread to jawline after increasing paneer to twice daily."
+        },
+        {
+          "session_id": "USR002_S08",
+          "timestamp": "2026-03-07T22:15:00",
+          "note": "Acne returned after eating paneer 3 days in a row."
+        }
+      ],
+      "counter_evidence": [
+        {
+          "session_id": "USR002_S07",
+          "timestamp": "2026-02-27T11:20:00",
+          "note": "Small amount of dairy (yogurt once a day) did not trigger a breakout, suggesting a tolerance threshold."
+        }
+      ],
+      "temporal_logic": "Symptoms appear within 48-72 hours of high dairy intake and resolve within 7 days of cessation (S04).",
+      "causal_mechanism": "Dairy consumption can increase IGF-1 levels and androgenic activity, which stimulates sebum production and follicular hyperkeratinization, leading to acne.",
+      "confidence_score": "very_high",
+      "confidence_reasoning": "The pattern was confirmed through multiple challenge/de-challenge cycles and even identified a specific dose-response threshold."
+    },
+    {
+      "pattern_title": "Delayed-onset hair fall from severe caloric restriction",
+      "supporting_evidence": [
+        {
+          "session_id": "USR002_S06",
+          "timestamp": "2026-02-19T20:30:00",
+          "note": "Excessive hair fall began approximately 6 weeks after starting a 700-calorie diet."
+        }
+      ],
+      "counter_evidence": [
+        {
+          "session_id": "USR002_S08",
+          "timestamp": "2026-03-07T22:15:00",
+          "note": "Hair fall began improving within 2 weeks of increasing caloric intake."
+        }
+      ],
+      "temporal_logic": "The 6-week lag between the start of the restriction (Jan 8) and the symptom onset (Feb 19) aligns with the biological timeline of telogen effluvium triggered by metabolic shock.",
+      "causal_mechanism": "Severe energy deficiency causes the body to deprioritize non-essential functions like hair follicle cycling to preserve energy for vital organs.",
+      "confidence_score": "high",
+      "confidence_reasoning": "The timing is classic for telogen effluvium, and the symptom resolved specifically when the nutritional deficit was corrected."
+    },
+    {
+      "pattern_title": "Acute metabolic distress from low energy availability",
+      "supporting_evidence": [
+        {
+          "session_id": "USR002_S01",
+          "timestamp": "2026-01-08T08:30:00",
+          "note": "Morning dizziness immediately followed the start of 700-800 calorie restriction."
+        },
+        {
+          "session_id": "USR002_S05",
+          "timestamp": "2026-02-10T07:55:00",
+          "note": "Fatigue, brain fog, and workout difficulty emerged after 5 weeks of sustained restriction."
+        }
+      ],
+      "counter_evidence": [
+        {
+          "session_id": "USR002_S09",
+          "timestamp": "2026-03-18T09:40:00",
+          "note": "All energy-related symptoms resolved once calories were increased."
+        }
+      ],
+      "temporal_logic": "Dizziness appeared immediately (acute), while fatigue and brain fog accumulated over 3-5 weeks (cumulative debt).",
+      "causal_mechanism": "Insufficient glucose and ATP production to meet the demands of both basal metabolism and physical activity, leading to systemic fatigue and neurological symptoms like brain fog.",
+      "confidence_score": "very_high",
+      "confidence_reasoning": "Direct correlation between extreme caloric deficit and classic symptoms of under-fueling, with total resolution upon re-feeding."
+    }
+  ]
+}

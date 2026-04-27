@@ -1,0 +1,114 @@
+{
+  "reasoning_trace": [
+    "Analyzed stomach pain reports in S01, S04, S07, and S09. Found a 100% correlation with dinners eaten after 11:00 PM during work deadlines.",
+    "Examined headache reports in S02, S06, and S08. Noticed a consistent link with low water intake (2-3 glasses) and high-pressure work days.",
+    "Investigated the 'headaches mostly gone' comment in S03. This suggests that when the user isn't in a 'busy at work' phase or is potentially hydrating better, the symptom subsides, reinforcing the dehydration link.",
+    "Identified a hierarchical root cause: 'Work Deadlines/Sprints'. This single factor drives the late eating (stomach pain), the neglect of hydration (headaches), and the prolonged sitting (back pain).",
+    "Evaluated the lower back pain in S03. While only explicitly reported once, the lifestyle factor (10 hours sitting) is a recurring theme in 'long work sessions' mentioned in S01, S02, S04, and S06.",
+    "Checked for delayed onset: Fatigue in S05 appears after several weeks of reported high-intensity work and late nights, suggesting a cumulative sleep debt and nutritional depletion from 'eating out every day'.",
+    "Rejected 'random stomach condition' hypothesis mentioned by user in S09 because the temporal link to late eating is too consistent across 4 separate months."
+  ],
+  "patterns": [
+    {
+      "pattern_title": "Post-Prandial Gastric Distress from Late-Night Eating",
+      "supporting_evidence": [
+        {
+          "session_id": "USR001_S01",
+          "timestamp": "2026-01-05T23:14:00",
+          "note": "Stomach burning after 11:30pm dinner."
+        },
+        {
+          "session_id": "USR001_S04",
+          "timestamp": "2026-01-28T00:42:00",
+          "note": "Recurrence of burning pain after 11:00pm dinner."
+        },
+        {
+          "session_id": "USR001_S07",
+          "timestamp": "2026-02-23T23:55:00",
+          "note": "Third instance following a midnight dinner."
+        },
+        {
+          "session_id": "USR001_S09",
+          "timestamp": "2026-03-19T10:15:00",
+          "note": "Fourth instance following 11:30pm dinner."
+        }
+      ],
+      "counter_evidence": [],
+      "temporal_logic": "Symptoms consistently appear within 1-12 hours following a meal consumed after 11:00 PM (S01, S04, S07, S09).",
+      "causal_mechanism": "Eating late at night, especially under stress, increases gastric acid secretion. Lying down shortly after a late meal can cause acid reflux and irritation of the gastric lining (gastritis-like symptoms).",
+      "confidence_score": "very_high",
+      "confidence_reasoning": "The pattern has four distinct occurrences with zero counter-instances where the trigger occurred without the symptom."
+    },
+    {
+      "pattern_title": "Dehydration and Screen-Induced Tension Headaches",
+      "supporting_evidence": [
+        {
+          "session_id": "USR001_S02",
+          "timestamp": "2026-01-12T10:30:00",
+          "note": "Afternoon headaches with only 2 glasses of water and all-day screen time."
+        },
+        {
+          "session_id": "USR001_S06",
+          "timestamp": "2026-02-14T11:05:00",
+          "note": "Headaches return during a big project week with 3 glasses of water and high caffeine intake."
+        },
+        {
+          "session_id": "USR001_S08",
+          "timestamp": "2026-03-08T16:40:00",
+          "note": "Headache during massive release deadline with 'barely any water'."
+        }
+      ],
+      "counter_evidence": [
+        {
+          "session_id": "USR001_S03",
+          "timestamp": "2026-01-19T09:15:00",
+          "note": "Headaches 'mostly gone' when the user was not reporting a high-pressure deadline."
+        }
+      ],
+      "temporal_logic": "Headaches occur in the afternoon (3-4pm) following a full morning/early afternoon of low fluid intake and high screen exposure (S02, S06).",
+      "causal_mechanism": "Dehydration leads to reduced blood volume and brain tissue shrinkage, triggering pain receptors. This is exacerbated by digital eye strain and muscle tension from prolonged screen use.",
+      "confidence_score": "high",
+      "confidence_reasoning": "Strong correlation across three months, with a clear biological mechanism and positive response when the trigger is absent."
+    },
+    {
+      "pattern_title": "Work-Cycle Induced Lifestyle Degradation (Root Cause)",
+      "supporting_evidence": [
+        {
+          "session_id": "USR001_S01",
+          "timestamp": "2026-01-05T23:14:00",
+          "note": "Work deadline leads to late dinner and stomach pain."
+        },
+        {
+          "session_id": "USR001_S06",
+          "timestamp": "2026-02-14T11:05:00",
+          "note": "Big project leads to low water, high caffeine, and headaches."
+        },
+        {
+          "session_id": "USR001_S08",
+          "timestamp": "2026-03-08T16:40:00",
+          "note": "Massive release deadline leads to dehydration and headaches."
+        }
+      ],
+      "counter_evidence": [],
+      "temporal_logic": "The 'Work Deadline' or 'Project' context precedes all reported lifestyle failures (late eating, low water, sedentary behavior) across the entire 11-week timeline.",
+      "causal_mechanism": "Occupational stress and high workload lead to 'time scarcity,' causing the user to prioritize work over basic physiological needs (hydration, timely nutrition, sleep), resulting in multi-system symptoms.",
+      "confidence_score": "very_high",
+      "confidence_reasoning": "This root cause explains the clustering of all other symptoms and the recurring nature of the episodes."
+    },
+    {
+      "pattern_title": "Sedentary-Induced Musculoskeletal Strain",
+      "supporting_evidence": [
+        {
+          "session_id": "USR001_S03",
+          "timestamp": "2026-01-19T09:15:00",
+          "note": "Lower back pain after sitting for 10 hours straight with no exercise."
+        }
+      ],
+      "counter_evidence": [],
+      "temporal_logic": "Symptom reported specifically after a period of 10-hour sedentary sessions (S03).",
+      "causal_mechanism": "Prolonged sitting causes compression of the lumbar discs and weakening of the core muscles, leading to mechanical back pain.",
+      "confidence_score": "medium",
+      "confidence_reasoning": "The biological link is clear, but it is only explicitly reported as a primary concern in one session."
+    }
+  ]
+}

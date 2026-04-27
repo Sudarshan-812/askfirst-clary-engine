@@ -1,0 +1,90 @@
+{
+  "reasoning_trace": [
+    "Analyzed afternoon fatigue reported in S01, S03, and S06. S01 and S03 showed a direct link between high-carb/low-protein lunches and a 2-4pm crash.",
+    "Observed S03 where reducing rice alone failed because it led to hunger and biscuit snacking, causing a secondary crash. S06 confirmed that adding protein (chicken) resolved the fatigue, identifying protein deficiency as a key factor in glycemic stability.",
+    "Tracked period cramp severity across S02, S05, S08, and S09. Initially, work stress (S02, S05) appeared to be the driver.",
+    "Performed a root-cause analysis in S09: despite low work stress, cramps remained bad. The only consistent factor across all high-severity cramp sessions was poor sleep/late-night screen use, suggesting sleep-induced cortisol elevation is the root driver over proximate work stress.",
+    "Examined the progression of sleep-related symptoms. S04 (Week 5) showed tiredness and low mood after 3 weeks of late nights. S07 (Week 9) showed the emergence of 'constant low-level anxiety' after 7 weeks of sleep debt, indicating a delayed-onset cumulative effect.",
+    "Checked for counter-evidence: S06 is a strong counter-example for the fatigue pattern (trigger removed, symptom gone). S09 is a critical counter-example for the 'stress-causes-cramps' theory, pointing instead to sleep."
+  ],
+  "patterns": [
+    {
+      "pattern_title": "Post-prandial glycemic crashes driven by high carb-to-protein ratio",
+      "supporting_evidence": [
+        {
+          "session_id": "USR003_S01",
+          "timestamp": "2026-01-06T14:30:00",
+          "note": "Large rice/dal lunch followed by 2-4pm exhaustion and inability to focus."
+        },
+        {
+          "session_id": "USR003_S03",
+          "timestamp": "2026-01-23T10:15:00",
+          "note": "Reducing rice without adding protein led to hunger, biscuit snacking, and a secondary energy crash."
+        }
+      ],
+      "counter_evidence": [
+        {
+          "session_id": "USR003_S06",
+          "timestamp": "2026-02-20T13:00:00",
+          "note": "Adding chicken (protein) to lunch eliminated the 2pm crash entirely."
+        }
+      ],
+      "temporal_logic": "Symptoms occur 1-2 hours after the trigger (lunch) and are resolved within the same week when the nutritional trigger is modified (S06).",
+      "causal_mechanism": "High glycemic load from rice causes a rapid blood sugar spike and subsequent insulin-driven crash (reactive hypoglycemia). Protein slows gastric emptying and glucose absorption, stabilizing energy.",
+      "confidence_score": "very_high",
+      "confidence_reasoning": "The pattern was successfully tested and reversed by the user in S06, providing clear experimental confirmation."
+    },
+    {
+      "pattern_title": "Chronic sleep deprivation as the root driver of menstrual cramp severity",
+      "supporting_evidence": [
+        {
+          "session_id": "USR003_S05",
+          "timestamp": "2026-02-11T22:30:00",
+          "note": "Worse than usual cramps coinciding with both high stress and bad sleep."
+        },
+        {
+          "session_id": "USR003_S09",
+          "timestamp": "2026-03-16T10:20:00",
+          "note": "Bad cramps persisted even when work stress was low, but sleep debt remained high."
+        }
+      ],
+      "counter_evidence": [
+        {
+          "session_id": "USR003_S02",
+          "timestamp": "2026-01-14T21:00:00",
+          "note": "Cramps were 'stronger' with stress, but the user hadn't yet established the chronic 5-6 hour sleep debt seen in later sessions."
+        }
+      ],
+      "temporal_logic": "Cramp severity tracks more consistently with the 7+ week sleep debt than with fluctuating work stress levels (S09).",
+      "causal_mechanism": "Chronic sleep deprivation elevates baseline cortisol and systemic inflammation, which increases the production of prostaglandins, the primary chemicals responsible for uterine contractions and pain.",
+      "confidence_score": "high",
+      "confidence_reasoning": "S09 provides a clear 'natural experiment' where the stress variable was removed but the symptom persisted alongside the sleep variable."
+    },
+    {
+      "pattern_title": "Delayed-onset anxiety and mood dysregulation from cumulative sleep debt",
+      "supporting_evidence": [
+        {
+          "session_id": "USR003_S04",
+          "timestamp": "2026-02-03T19:45:00",
+          "note": "Low mood appears after 3 weeks of 5-6 hours of sleep."
+        },
+        {
+          "session_id": "USR003_S07",
+          "timestamp": "2026-02-28T20:00:00",
+          "note": "Constant low-level anxiety emerges after 7 weeks of chronic late-night screen use and sleep debt."
+        }
+      ],
+      "counter_evidence": [
+        {
+          "session_id": "USR003_S01",
+          "timestamp": "2026-01-06T14:30:00",
+          "note": "User had 7 hours of sleep and reported no anxiety or mood issues, only localized afternoon fatigue."
+        }
+      ],
+      "temporal_logic": "There is a clear 4-week lag between the start of the sleep deprivation habit (S04) and the onset of generalized anxiety (S07).",
+      "causal_mechanism": "Blue light from late-night screens suppresses melatonin, while chronic short sleep duration prevents the amygdala from properly regulating emotional responses, leading to a state of 'floating' anxiety.",
+      "confidence_score": "high",
+      "confidence_reasoning": "The progression from simple tiredness to mood dips to generalized anxiety follows a classic clinical trajectory of cumulative sleep deprivation."
+    }
+  ]
+}
